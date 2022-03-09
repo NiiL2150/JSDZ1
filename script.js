@@ -485,3 +485,458 @@ do {
     }
 } while (confirm(`${day}, продолжить?`));
 */
+
+//9
+/*
+let str = "";
+const imax = 9;
+const lmax = 10;
+let lenmax = (imax*lmax).toString().length;
+for (let i = 2; i <= imax; i++) {
+    for (let l = 1; l <= lmax; l++) {
+        let x = i*l;
+        let xlen = x.toString().length;
+        str += " ".repeat(lenmax-xlen);
+        str += x;
+        str += " ";
+    }
+    str+="\n";
+}
+alert(str); //Немного другой вывод из-за шрифта
+console.log(str);
+*/
+
+//10
+/*
+class Handler{
+    constructor(current, result, next = null){
+        if(typeof(current) === 'function'){
+            this.current = current;
+        }
+        else{
+            throw Error("Not a function");
+        }
+        this.result = result;
+        this.next = next instanceof Handler ? next : null;
+    }
+    handle(obj){
+        if(this.current.call(this, obj) === true){
+            return this.result;
+        }
+        if(this.next !== null){
+            return this.next.handle(obj);
+        }
+        throw Error("Not defined");
+    }
+}
+
+let l = 0, r = 100;
+
+let isEqual = new Handler((num)=>{
+    if(confirm(`Загаданное число равно ${num}?`)){
+        return true;
+    }
+    return false;
+}, "=");
+let isLess = new Handler((num)=>{
+    if(confirm(`Загаданное число меньше чем ${num}?`)){
+        return true;
+    }
+    return false;
+}, "<", isEqual);
+let isGreater = new Handler((num)=>{
+    if(confirm(`Загаданное число больше чем ${num}?`)){
+        return true;
+    }
+    return false;
+}, ">", isLess);
+
+while (l<r) {
+    try {
+        let mid = Math.round((l+r)/2);
+        switch (isGreater.handle(mid)) {
+            case ">":
+                l = mid+1;
+                break;
+            case "<":
+                r = mid-1;
+                break;
+            case "=":
+                l = mid;
+                r = mid;
+                break;
+            default:
+                break;
+        }
+    } catch (e) {
+        if(e.message === "Not defined"){
+            alert("Упс, что-то пошло не так...");
+            l = 0;
+            r = 100;
+        }
+    }
+}
+alert(`Загаданное число - ${l}`);
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Tasks 4
+//1
+/*
+function fun(x, y){
+    return x>y ? 1 : x<y ? -1 : 0;
+}
+let x = 0, y = 1;
+console.log(fun(x, y));
+console.log(fun(y, x));
+console.log(fun(x, x));
+*/
+
+//2
+/*
+function factorial(x){
+    if(x==1){
+        return 1;
+    }
+    if(x==0){
+        return 0;
+    }
+    if(x<0){
+        return undefined;
+    }
+    return x*(factorial(x-1));
+}
+console.log(factorial(10));
+*/
+
+//3
+/*
+function fun(x, y, z){
+    return x*100+y*10+z;
+}
+console.log(fun(1, 4, 9));
+*/
+
+//4
+/*
+function fun(x, y){
+    if(y===undefined){
+        y = x;
+    }
+    return x*y;
+}
+console.log(fun(2));
+console.log(fun(2, 3));
+*/
+
+//5
+/*
+function fun(x){
+    if(x==6){
+        return true;
+    }
+    let num = 0;
+    for (let i = 2; num<=x; i++) {
+        num = i*i*(2*i*i-1);
+        if(num==x){
+            return true;
+        }
+    }
+    return false;
+}
+console.log(fun(1));
+console.log(fun(5));
+console.log(fun(6));
+console.log(fun(7));
+console.log(fun(27));
+console.log(fun(28));
+console.log(fun(29));
+console.log(fun(495));
+console.log(fun(496));
+console.log(fun(497));
+console.log(fun(8128));
+console.log(fun(33550336));
+console.log(fun(8589869056));
+*/
+
+//7
+/*
+function fun(hh, mm=0, ss=0){
+    mm+=ss/60;
+    ss%=60;
+    hh+=mm/60;
+    mm%=60;
+    hh%=24;
+    var str = "";
+    if(hh<10){
+        str+="0";
+    }
+    str+=hh;
+    str+=":";
+    if(mm<10){
+        str+="0";
+    }
+    str+=mm;
+    str+=":";
+    if(ss<10){
+        str+="0";
+    }
+    str+=ss;
+    return str;
+}
+console.log(fun(23, 59, 60));
+*/
+
+//8
+/*
+function toMinutes(hh=0, mm=0){
+    return hh*60+mm;
+}
+function toSeconds(hh=0, mm=0, ss=0){
+    return toMinutes(hh, mm)*60+ss;
+}
+console.log(toSeconds(5, 5, 5));
+*/
+
+//9
+/*
+function fun(ss){
+    let mm = Math.floor(ss/60);
+    ss%=60;
+    let hh = Math.floor(mm/60);
+    mm%=60;
+    var str = "";
+    if(hh<10){
+        str+="0";
+    }
+    str+=hh;
+    str+=":";
+    if(mm<10){
+        str+="0";
+    }
+    str+=mm;
+    str+=":";
+    if(ss<10){
+        str+="0";
+    }
+    str+=ss;
+    return str;
+}
+console.log(fun(18305));
+*/
+
+//10
+/*
+function toMinutes(hh=0, mm=0){
+    return hh*60+mm;
+}
+function toSeconds(hh=0, mm=0, ss=0){
+    return toMinutes(hh, mm)*60+ss;
+}
+function fun(ss){
+    let mm = Math.floor(ss/60);
+    ss%=60;
+    let hh = Math.floor(mm/60);
+    mm%=60;
+    var str = "";
+    if(hh<10){
+        str+="0";
+    }
+    str+=hh;
+    str+=":";
+    if(mm<10){
+        str+="0";
+    }
+    str+=mm;
+    str+=":";
+    if(ss<10){
+        str+="0";
+    }
+    str+=ss;
+    return str;
+}
+function dateDiff(hh1, mm1, ss1, hh2, mm2, ss2){
+    let sec1 = toSeconds(hh1, mm1, ss1);
+    let sec2 = toSeconds(hh2, mm2, ss2);
+    let diff = sec2-sec1>0?sec2-sec1:sec1-sec2;
+    return fun(diff);
+}
+console.log(dateDiff(24, 24, 24, 12, 12, 12));
+*/
+
+
+
+
+
+
+//Tasks 5
+//1
+/*
+function stepen(x, y){
+    if(y==0){
+        return 1;
+    }
+    if(y<0){
+        return 1/stepen(x, -y);
+    }
+    return x*stepen(x, y-1);
+}
+console.log(stepen(2, 6));
+console.log(stepen(2, -6));
+console.log(stepen(6, 2));
+console.log(stepen(6, -2));
+*/
+
+//2
+/*
+function nod(x, y){
+    if(!y){
+        return x;
+    }
+    return nod(y, x%y);
+}
+console.log(nod(36, 27));
+console.log(nod(37, 27));
+*/
+
+//3
+/*
+function maxDigit(x){
+    let str = x.toString();
+    let max = 0;
+    for (const item of str) {
+        let tmp = Number.parseInt(item);
+        if(tmp>max){
+            max = tmp;
+            if(max==9){
+                break;
+            }
+        }
+    }
+    return max;
+}
+console.log(maxDigit(1234567890));
+console.log(maxDigit(123456780));
+console.log(maxDigit(12345670));
+console.log(maxDigit(1234560));
+console.log(maxDigit(123450));
+console.log(maxDigit(12340));
+console.log(maxDigit(1230));
+console.log(maxDigit(120));
+*/
+
+//4
+/*
+function isPrime(x){
+    function isPrimeCompare(x, y){
+        if(x<y*y){
+            return true;
+        }
+        if(x%y==0){
+            return false;
+        }
+        return isPrime(x, y+2);
+    }
+
+    if(x<0){
+        x = -x;
+    }
+    if(x==0){
+        return false;
+        //хз
+    }
+    if(x==1){
+        return false;
+        //если под простым числом подразумевается число у которого ровно 2 делителя, то false
+        //если меньше 2, то true
+        //если должно делиться только на самого себя и 1, то true
+    }
+    if(x==2){
+        return true;
+    }
+    if(x%2==0){
+        return false;
+    }
+    return isPrimeCompare(x, 3);
+}
+console.log(isPrime(0));
+console.log(isPrime(1));
+console.log(isPrime(2));
+console.log(isPrime(3));
+console.log(isPrime(4));
+console.log(isPrime(5));
+console.log(isPrime(6));
+console.log(isPrime(7));
+console.log(isPrime(8));
+console.log(isPrime(9));
+console.log(isPrime(10));
+*/
+
+//5
+/*
+function fun(arr, x){
+    if(x==0){
+        return arr;
+    }
+    if(x<=0){
+        arr.push(-1);
+        x=-x;
+    }
+    if(x==1){
+        return arr;
+    }
+    if(x%2==0){
+        arr.push(2);
+        return fun(arr, x/2);
+    }
+    for (let i = 3; i*i < x; i+=2) {
+        if(x%i==0){
+            arr.push(i);
+            return fun(arr, x/i);
+        }
+    }
+    arr.push(x);
+    return arr;
+}
+console.log(fun([], -10080));
+*/
+
+//6
+/*
+function fun(x, y, z){
+    if(z===0){
+        return x+y;
+    }
+    return fun(y, x+y, --z);
+}
+function fibo(z){
+    if(z===0){
+        return 0;
+    }
+    if(z===1){
+        return 1;
+    }
+    return fun(0, 1, z-2);
+}
+console.log(fibo(0));
+console.log(fibo(1));
+console.log(fibo(2));
+console.log(fibo(3));
+console.log(fibo(4));
+console.log(fibo(5));
+console.log(fibo(6));
+console.log(fibo(7));
+console.log(fibo(8));
+console.log(fibo(9));
+*/
